@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="TiposDeNubes.Views.VerNubesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TiposDeNubes.Views" xmlns:viewmodels="clr-namespace:TiposDeNubes.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:NubeViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel Margin="20">
+
+        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
+
+            <Button Margin="2"  Height="50" 
+                BorderBrush="Transparent" Background="Transparent"
+                >
+                <Hyperlink TextDecorations="None" 
+                           Command="{Binding VerRegistrarCommand}" 
+                           Foreground="#31af36" FontSize="15"
+                           FontFamily="Verdana" FontStyle="Italic">Registrar</Hyperlink>
+            </Button>
+            <Button Margin="2"  Height="50"
+     BorderBrush="Transparent" Background="Transparent"
+       >
+                <Hyperlink TextDecorations="None" Foreground="#31af36" Command="{Binding VerEliminarCommand}" CommandParameter="{Binding ElementName=listaDeNubes, Path=SelectedItem}" FontSize="15" FontFamily="Verdana" FontStyle="Italic">Eliminar</Hyperlink>
+            </Button>
+            <Button Margin="2"  Height="50"
+     BorderBrush="Transparent" Background="Transparent" Click="Button_Click"
+      >
+                <Hyperlink TextDecorations="None" Foreground="#31af36" FontSize="15" FontFamily="Verdana" FontStyle="Italic">Editar</Hyperlink>
+            </Button>
+
+        </WrapPanel>
+        <ListBox 
+            Name="listaDeNubes"  
+            FontFamily="Segoe UI" 
+            ItemsSource="{Binding NubeCRUD.Nubes}"
+            SelectedItem="{Binding Nube}"  
+            Foreground="#31af36"
+            FontSize="60" BorderThickness="0.5"  
+            BorderBrush="#31af36"
+              >
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Transparent"  Margin="3">
+                        <WrapPanel >
+                            <TextBlock Margin="0,3,0,0"  FontSize="25" >
+<Run Text="{Binding Genero}"></Run>, <Run Text="{Binding Especie}"></Run>  <Run Text="{Binding Nivel}"></Run><Run Text="{Binding Caracteristicas}"></Run></TextBlock>
+                        </WrapPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ListBox>
+
+    </DockPanel>
+</UserControl>
